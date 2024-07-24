@@ -1,26 +1,4 @@
-/*
 
-  ____          _____               _ _           _       
- |  _ \        |  __ \             (_) |         | |      
- | |_) |_   _  | |__) |_ _ _ __ _____| |__  _   _| |_ ___ 
- |  _ <| | | | |  ___/ _` | '__|_  / | '_ \| | | | __/ _ \
- | |_) | |_| | | |  | (_| | |   / /| | |_) | |_| | ||  __/
- |____/ \__, | |_|   \__,_|_|  /___|_|_.__/ \__, |\__\___|
-         __/ |                               __/ |        
-        |___/                               |___/         
-    
-____________________________________
-/ Si necesitas ayuda, contáctame en \
-\ https://parzibyte.me               /
- ------------------------------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||
-Creado por Parzibyte (https://parzibyte.me). Este encabezado debe mantenerse intacto,
-excepto si este es un proyecto de un estudiante.
-*/
 let LONGITUD_CUADRADO = screen.width > 420 ? 30 : 20;
 const COLUMNAS = 10;
 const FILAS = 20;
@@ -75,13 +53,22 @@ class Figura {
         this.rotaciones = rotaciones;
         this.indiceRotacion = 0;
         this.puntos = this.rotaciones[this.indiceRotacion];
-        const colorAleatorio = COLORES_PARA_ELEGIR[obtenerNumeroAleatorioEnRango(0, COLORES_PARA_ELEGIR.length - 1)];
+        this.color = COLORES_PARA_ELEGIR[obtenerNumeroAleatorioEnRango(0, COLORES_PARA_ELEGIR.length - 1)];
+        this.actualizarColor();
+        this.aumentarIndiceDeRotacion();
+    }
+    actualizarColor() {
         this.rotaciones.forEach(puntos => {
             puntos.forEach(punto => {
-                punto.color = colorAleatorio;
+                punto.color = this.color;
             });
         });
-        this.aumentarIndiceDeRotacion();
+    }
+
+    // Método para cambiar el color de la pieza
+    cambiarColor(color) {
+        this.color = color;
+        this.actualizarColor();
     }
 
     getPuntos() {
@@ -551,6 +538,9 @@ document.addEventListener("keydown", (e) => {
         case "KeyP":
             pausarOReanudar();
             break;
+            case "KeyC":
+            cambiarColorFiguraActual();
+            break;
     }
     sincronizarPiezasConTablero();
 });
@@ -589,24 +579,58 @@ const pausar = () => {
     clearInterval(idInterval);
 }
 const pierde = () => {
-    // Verificar si hay algo en la coordenada 1 de Y; algo perezoso pero funciona
+    // Verificar si hay algo en la coordenada 1 de Y
     for (const punto of tablero) {
         if (punto.y === 1) return true;
     }
     return false;
 };
 
-Swal.fire("Bienvenido", `Port casi perfecto del juego de Tetris en JavaScript.
-<br>
-<strong>Controles:</strong>
-<ul class="list-group">
-<li class="list-group-item"> <kbd>P</kbd><br>Pausar o reanudar </li>
-<li class="list-group-item"> <kbd>Espacio</kbd><br>Rotar</li>
-<li class="list-group-item"> <kbd>Flechas de dirección</kbd><br>Mover figura hacia esa dirección</li>
-<li class="list-group-item"><strong>También puedes usar los botones si estás en móvil</strong></li>
-</ul>
-<strong>Creado por <a href="https://parzibyte.me/blog">Parzibyte</a></strong>
-<br>
-Gracias a <a target="_blank" href="https://www.youtube.com/channel/UCz6zvgkf6eKpgqlUZQstOtQ">Bulby</a> por la música de fondo
-y a <a href="https://freesound.org/people/grunz/sounds/109662/">Freesound.org</a> por el sonido al completar una línea
-`);
+//colores
+
+const coloresPersonalizados = [
+    "red", 
+    "green", 
+    "blue",
+    "gray",
+    "black",
+    "violet",
+    "pink", 
+    
+];
+
+
+const cambiarColorFiguraActual = (color) => {
+    j.cambiarColor(color);
+}
+
+
+document.querySelector("#btnColor1").addEventListener("click", () => {
+    cambiarColorFiguraActual(coloresPersonalizados[0]);
+});
+
+document.querySelector("#btnColor2").addEventListener("click", () => {
+    cambiarColorFiguraActual(coloresPersonalizados[1]);
+});
+
+document.querySelector("#btnColor3").addEventListener("click", () => {
+    cambiarColorFiguraActual(coloresPersonalizados[2]);
+});
+
+document.querySelector("#btnColor4").addEventListener("click", () => {
+    cambiarColorFiguraActual(coloresPersonalizados[3]);
+});
+
+document.querySelector("#btnColor5").addEventListener("click", () => {
+    cambiarColorFiguraActual(coloresPersonalizados[4]);
+});
+
+document.querySelector("#btnColor6").addEventListener("click", () => {
+    cambiarColorFiguraActual(coloresPersonalizados[5]);
+});
+
+document.querySelector("#btnColor7").addEventListener("click", () => {
+    cambiarColorFiguraActual(coloresPersonalizados[6]);
+});
+
+
