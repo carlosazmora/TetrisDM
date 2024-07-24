@@ -131,7 +131,7 @@ y a <a href="https://freesound.org/people/grunz/sounds/109662/">Freesound.org</a
                 case "ArrowDown":
                     this.attemptMoveDown();
                     break;
-                case "KeyR":
+                case "ArrowUp":
                     this.attemptRotate();
                     break;
                 case "KeyP":

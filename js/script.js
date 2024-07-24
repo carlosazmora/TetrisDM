@@ -545,7 +545,7 @@ document.addEventListener("keydown", (e) => {
         case "ArrowDown":
             intentarMoverAbajo();
             break;
-        case "Space":
+        case "ArrowUp":
             intentarRotar();
             break;
         case "KeyP":
