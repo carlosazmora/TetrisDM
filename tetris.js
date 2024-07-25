@@ -475,7 +475,7 @@ const loop = () => {
             agregarFiguraATablero(j);
 
             if (pierde()) {
-                Swal.fire("Juego terminado", "Perdiste. Refresca la página para jugar de nuevo");
+                alert("Juego terminado, Perdiste. Refresca la página para jugar de nuevo");
                 sonidoFondo.pause();
                 puedeJugar = false;
                 return;
